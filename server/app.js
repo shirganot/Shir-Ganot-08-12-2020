@@ -6,18 +6,25 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug')('server:server');
 const http = require('http');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
-app.engine('jade', require('jade').__express);
-app.set('view engine', 'jade');
+const corsOptions = {
+  origin: true,
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('./controllers'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use('/api', require('./controllers/index.controller'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -32,7 +39,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
 });
 
 // module.exports = app;

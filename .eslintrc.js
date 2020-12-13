@@ -25,6 +25,7 @@ module.exports = {
     'no-use-before-define': ['error', { functions: false, classes: true }],
     'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-unused-vars': ['warn', { args: 'none', argsIgnorePattern: 'req|res|next|val' }],
   },
   overrides: [
     {
