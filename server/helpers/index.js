@@ -64,10 +64,10 @@ const getJSONData = async () => {
 
 const newDate = () => new Date().toString();
 
-const getNewMsgId = async (senderId) => {
+const getNewMsgId = async (senderId, receiverId) => {
   let db = await getJSONData();
   const { sent } = db.users[senderId].messages;
-  if (sent.length > 0) return `${senderId};${sent[sent.length - 1].id + 1}`;
+  if (sent.length > 0) return `${senderId};${receiverId}-${sent[sent.length - 1].id + 1}`;
   return `${senderId};0`;
 };
 

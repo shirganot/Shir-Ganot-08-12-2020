@@ -36,13 +36,18 @@ const getAllMessages = (userId) => {
   });
 };
 
-const deleteMessage = (userId, msgId) => {
+const deleteMessage = (msgId) => {
   return new Promise(async (resolve, reject) => {
+    const [senderId, receiverId] = msgId.split(/-|;/);
+
     try {
       let db = await getJSONData();
-      const { sent, received } = db.users[userId].messages;
-      db.users[userId].messages.sent = sent.filter((msg) => msg.id !== msgId);
-      db.users[userId].messages.received = received.filter((msg) => msg.id !== msgId);
+      db.users[senderId].messages.sent = db.users[senderId].messages.sent.filter(
+        (msg) => msg.id !== msgId,
+      );
+      db.users[receiverId].messages.received = db.users[receiverId].messages.received.filter(
+        (msg) => msg.id !== msgId,
+      );
       await setJSONData(db);
       resolve();
     } catch (err) {

@@ -1,0 +1,42 @@
+// .compose-email {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   // justify-content: center;
+
+//   h1 {
+//     text-align: center;
+//     font-size: 3rem;
+//   }
+// }
+
+.compose-email {
+  .MuiDialogContent-root form {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+
+    & > *:not(:first-child) {
+      margin-top: 1rem;
+    }
+
+    .MuiButtonBase-root {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .MuiDialogActions-root {
+    display: flex;
+    justify-content: space-between;
+
+    .MuiSvgIcon-root {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .MuiDialogTitle-root {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

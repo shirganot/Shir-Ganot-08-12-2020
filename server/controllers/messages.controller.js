@@ -16,10 +16,9 @@ router.get('/', async (req, res) => {
 
 router.delete('/:msgId', async (req, res) => {
   const { msgId } = req.params;
-  const { userId } = req.query;
 
   try {
-    await MODEL.deleteMessage(userId, msgId);
+    await MODEL.deleteMessage(msgId);
     res.json({ message: `The post #${msgId} has been deleted` });
   } catch ({ status, message }) {
     if (status) res.status(status).json({ message });

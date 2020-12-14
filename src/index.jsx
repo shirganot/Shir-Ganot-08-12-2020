@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
+import './assets/scss/globalClasses.scss';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -13,9 +13,7 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </Provider>,
   document.getElementById('root'),
 );
