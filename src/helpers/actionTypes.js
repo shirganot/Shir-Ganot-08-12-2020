@@ -6,4 +6,6 @@ export const SET_CHOSEN_MSG = 'SET_CHOSEN_MSG';
 
 // Navigation store
 export const SET_CURRENT_TAB_IN_MANAGER = 'SET_CURRENT_TAB_IN_MANAGER';
-export const SET_ERROR_TYPE_OF_EMAIL = 'SET_ERROR_TYPE_OF_EMAIL';
+
+// Handle errors
+export const SET_ERROR = 'SET_ERROR';

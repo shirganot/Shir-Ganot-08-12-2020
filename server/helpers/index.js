@@ -4,7 +4,6 @@ const fs = require('fs').promises;
 const setJSONData = async (newData) => {
   try {
     await fs.writeFile(process.env.DATA_PATH, JSON.stringify(newData));
-    return true;
   } catch (err) {
     throw new Error(err);
   }

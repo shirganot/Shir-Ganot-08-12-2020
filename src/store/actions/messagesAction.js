@@ -1,6 +1,6 @@
 import * as at from '../../helpers/actionTypes';
 import customFetch from '../../helpers/customFetch';
-import { setErrorTypeOfEmail } from './navigationAction';
+import { setError } from './errorAction';
 
 export const getAllUserMessages = (email) => async (dispatch) => {
   try {
@@ -13,9 +13,9 @@ export const getAllUserMessages = (email) => async (dispatch) => {
       },
     });
 
-    dispatch(setErrorTypeOfEmail(null));
+    dispatch(setError(null));
   } catch (err) {
-    dispatch(setErrorTypeOfEmail(err.message));
+    dispatch(setError(err.message));
   }
 };
 
@@ -32,11 +32,11 @@ export const deleteMessage = (msgId) => async (dispatch) => {
       },
     });
   } catch (err) {
-    dispatch(setErrorTypeOfEmail(`Delete message wasn't successful - ${err.message}`));
+    dispatch(setError(`Delete message wasn't successful - ${err.message}`));
   }
 };
 
-// msgInfo={senderEmail, recevierEmail, msgContent}
+// MsgInfo obj={senderEmail, recevierEmail, msgContent}
 export const createNewMessage = (msgInfo) => async (dispatch) => {
   try {
     const res = await customFetch(`/messages`, {
@@ -53,8 +53,8 @@ export const createNewMessage = (msgInfo) => async (dispatch) => {
         newMsg: res,
       },
     });
-    dispatch(setErrorTypeOfEmail(null));
+    dispatch(setError(null));
   } catch (err) {
-    dispatch(setErrorTypeOfEmail(`Message was not sent because - ${err.message}`));
+    dispatch(setError(`Message was not sent because - ${err.message}`));
   }
 };

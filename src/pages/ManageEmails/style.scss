@@ -1,16 +1,8 @@
-@import '../../assets/scss/variables.scss';
 @import '../../assets/scss/breakpoints.scss';
 
 .manage-emails {
   display: flex;
   flex-direction: column;
-
-  .err_description {
-    margin: 2rem auto 0 auto;
-    color: $secondary;
-    text-align: center;
-    font-size: 1.7rem;
-  }
 
   .MuiFab-root {
     position: absolute;

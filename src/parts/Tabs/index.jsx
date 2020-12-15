@@ -7,7 +7,7 @@ import { setCurrTab } from '../../store/actions/navigationAction';
 
 const Tabs = ({ tabs }) => {
   const dispatch = useDispatch();
-  const { currTab, errInManager } = useSelector(({ navigationInfo }) => navigationInfo);
+  const { currTab } = useSelector(({ navigationInfo }) => navigationInfo);
 
   const handleChange = (event, newValue) => {
     const newTab = tabs[newValue];
@@ -24,7 +24,7 @@ const Tabs = ({ tabs }) => {
         centered
       >
         {tabs.map((label) => (
-          <Tab label={label} key={uuid()} disabled={Boolean(errInManager)} />
+          <Tab label={label} key={uuid()} />
         ))}
       </MuiTabs>
     </Paper>
