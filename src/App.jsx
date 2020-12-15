@@ -1,24 +1,20 @@
 import React from 'react';
-import './App.scss';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-
 import ComposeEmail from './pages/ComposeEmail';
 import ManageEmails from './pages/ManageEmails';
+import MessageBody from './pages/MessageBody';
 
 function App() {
-  // const history = useHistory();
-
-  // const background = location.state && location.state.background;
-
   return (
     <Router>
       <Switch>
-        <Route exact path="/" render={() => <Redirect to="/manage-emails/compose" />} />
+        <Route exact path="/" render={() => <Redirect to="/manage-emails" />} />
         <Route path="/manage-emails/" component={ManageEmails} />
       </Switch>
-      <switch>
+      <Switch>
         <Route path="/manage-emails/compose" component={ComposeEmail} />
-      </switch>
+        <Route path="/manage-emails/email-body" component={MessageBody} />
+      </Switch>
     </Router>
   );
 }

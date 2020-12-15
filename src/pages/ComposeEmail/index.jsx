@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.scss';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   IconButton,
@@ -13,32 +14,32 @@ import {
   DialogTitle,
 } from '@material-ui/core';
 import { Delete, Send, Close } from '@material-ui/icons';
-// import Navbar from '../../parts/Navbar';
-import { emailValidation, composeEmailErrStr } from '../../constants';
+import { EMAIL_VALIDATION, ERR_STR } from '../../constants';
+import { createNewMessage } from '../../store/actions/messagesAction';
 
 const ComposeEmail = () => {
-  const [open, setOpen] = useState(true);
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {};
 
-  const handleClose = () => {
-    setOpen(false);
-    history.push('/manage-emails');
+  const moveToManageEmails = () => history.push('/manage-emails');
+
+  const onSubmit = (data) => {
+    dispatch(createNewMessage(data));
+    moveToManageEmails();
   };
 
   return (
     <Dialog
       className="compose-email"
-      open={open}
-      onClose={handleClose}
+      open
+      onClose={moveToManageEmails}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title" disableTypography>
         <Typography variant="h5">Compose Email</Typography>
-        <IconButton aria-label="close" onClick={handleClose}>
+        <IconButton aria-label="close" onClick={moveToManageEmails}>
           <Close />
         </IconButton>
       </DialogTitle>
@@ -46,21 +47,21 @@ const ComposeEmail = () => {
         <form onSubmit={handleSubmit(onSubmit)} id="myform">
           <TextField
             type="text"
-            name="receiverId"
-            label="Receiver id (Email)"
+            name="senderEmail"
+            label="enter sender email"
             variant="outlined"
-            inputRef={register({ required: true, pattern: emailValidation })}
-            error={Boolean(errors.receiverId)}
-            helperText={errors.receiverId && composeEmailErrStr[errors.receiverId.type]}
+            inputRef={register({ required: true, pattern: EMAIL_VALIDATION })}
+            error={Boolean(errors.senderId)}
+            helperText={errors.senderId && ERR_STR[errors.senderId.type]}
           />
           <TextField
             type="text"
-            name="senderId"
-            label="Sender id (email)"
+            name="receiverEmail"
+            label="enter receiver email"
             variant="outlined"
-            inputRef={register({ required: true, pattern: emailValidation })}
-            error={Boolean(errors.senderId)}
-            helperText={errors.senderId && composeEmailErrStr[errors.senderId.type]}
+            inputRef={register({ required: true, pattern: EMAIL_VALIDATION })}
+            error={Boolean(errors.receiverId)}
+            helperText={errors.receiverId && ERR_STR[errors.receiverId.type]}
           />
           <TextField
             type="text"
@@ -69,23 +70,23 @@ const ComposeEmail = () => {
             variant="outlined"
             inputRef={register({ required: true })}
             error={Boolean(errors.subject)}
-            helperText={errors.subject && composeEmailErrStr[errors.subject.type]}
+            helperText={errors.subject && ERR_STR[errors.subject.type]}
           />
           <TextField
             type="text"
-            name="message"
+            name="body"
             label="Message"
             multiline
             rows={18}
             variant="outlined"
             inputRef={register({ required: true })}
             error={Boolean(errors.message)}
-            helperText={errors.message && composeEmailErrStr[errors.message.type]}
+            helperText={errors.message && ERR_STR[errors.message.type]}
           />
         </form>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="secondary" variant="contained">
+        <Button onClick={moveToManageEmails} color="secondary" variant="contained">
           <Delete />
           Delete
         </Button>
@@ -97,71 +98,5 @@ const ComposeEmail = () => {
     </Dialog>
   );
 };
-
-// const ComposeEmail = () => {
-//   const { register, handleSubmit, errors } = useForm();
-
-//   const onSubmit = (data) => {};
-
-//   return (
-//     <div className="compose-email page">
-//       {/* <Navbar /> */}
-//       <h1>Compose Email</h1>
-//       <form onSubmit={handleSubmit(onSubmit)}>
-//         <TextField
-//           type="text"
-//           name="receiverId"
-//           label="Receiver id (Email)"
-//           variant="outlined"
-//           inputRef={register({ required: true, pattern: emailValidation })}
-//           error={Boolean(errors.receiverId)}
-//           helperText={errors.receiverId && composeEmailErrStr[errors.receiverId.type]}
-//         />
-//         <TextField
-//           type="text"
-//           name="senderId"
-//           label="Sender id (email)"
-//           variant="outlined"
-//           inputRef={register({ required: true, pattern: emailValidation })}
-//           error={Boolean(errors.senderId)}
-//           helperText={errors.senderId && composeEmailErrStr[errors.senderId.type]}
-//         />
-//         <TextField
-//           type="text"
-//           name="subject"
-//           label="Subject"
-//           variant="outlined"
-//           inputRef={register({ required: true })}
-//           error={Boolean(errors.subject)}
-//           helperText={errors.subject && composeEmailErrStr[errors.subject.type]}
-//         />
-//         <TextField
-//           type="text"
-//           name="message"
-//           label="Message"
-//           multiline
-//           rows={18}
-//           variant="outlined"
-//           inputRef={register({ required: true })}
-//           error={Boolean(errors.message)}
-//           helperText={errors.message && composeEmailErrStr[errors.message.type]}
-//         />
-
-//         <Button variant="contained" color="primary" type="submit">
-//           Send
-//         </Button>
-
-//         {/* <TextField
-//             inputRef={register({ required: true })}
-//             label="סיסמא"
-//             type="password"
-//             name="password"
-//             error={Boolean(errors.password)}
-//             helperText={errors.password && inputErrStr[errors.password.type]}
-//           /> */}
-//       </form>
-//     </div>
-//   );
-// };
 
 export default ComposeEmail;

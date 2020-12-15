@@ -1,5 +1,5 @@
 const filename = '../data/posts.json';
-let posts = require('../data/messages.json');
+const { SPLIT_MSG_ID } = require('../constants');
 const { getJSONData, setJSONData, getNewMsgId, newDate, getEmailOrUserId } = require('../helpers');
 
 //message={senderEmail, recevierEmail, body, subject,id,createdAt,updatedAt}
@@ -9,9 +9,7 @@ const createNewMessage = async (msgInfo) => {
       let db = await getJSONData();
 
       const senderId = getEmailOrUserId(db, msgInfo.senderEmail);
-      const receiverId = getEmailOrUserId(db, msgInfo.recevierEmail);
-
-      console.log('senderId, receiverId', senderId, receiverId);
+      const receiverId = getEmailOrUserId(db, msgInfo.receiverEmail);
 
       const id = await getNewMsgId(senderId, receiverId);
       const newMsg = {
@@ -34,16 +32,10 @@ const getAllMessages = (email) => {
   return new Promise(async (reslove, reject) => {
     try {
       const db = await getJSONData();
-      if (!db.usersEmails[email]) {
-        console.log('imm heree');
-        throw new Error('Email does not exist');
-      }
-      console.log('never calledd');
-      const userId = db.usersEmails[email];
+      const userId = getEmailOrUserId(db, email);
       const msgs = db.users[userId].messages;
       reslove(msgs);
     } catch (err) {
-      console.log('🚀 ~ file: messages.model.js ~ line 43 ~ returnnewPromise ~ err', err);
       reject(err);
     }
   });
@@ -51,7 +43,7 @@ const getAllMessages = (email) => {
 
 const deleteMessage = (msgId) => {
   return new Promise(async (resolve, reject) => {
-    const [senderId, receiverId] = msgId.split(/-|;/);
+    const [senderId, receiverId] = msgId.split(SPLIT_MSG_ID);
 
     try {
       let db = await getJSONData();

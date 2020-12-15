@@ -1,0 +1,51 @@
+$max_mobile: 480px;
+$max_tablet: 768px;
+$max_desktop: 1024px;
+$max_large_desktop: 1200px;
+
+$media_queries: (
+  mobile: only screen and
+    (
+      max-width: $max_mobile,
+    ),
+  tablet: only screen and
+    (
+      max-width: $max_tablet,
+    )
+    and
+    (
+      min-width: $max_mobile + 1,
+    ),
+  desktop: only screen and
+    (
+      max-width: $max_desktop,
+    )
+    and
+    (
+      min-width: $max_tablet + 1,
+    ),
+  desktopL: only screen and
+    (
+      max-width: $max_large_desktop,
+    )
+    and
+    (
+      min-width: $max_desktop + 1,
+    ),
+  larger: only screen and
+    (
+      min-width: $max_large_desktop + 1,
+    ),
+);
+
+@mixin for_breakpoint($breakpoints) {
+  $conditions: ();
+  @each $breakpoint in $breakpoints {
+    // If the key exists in the map
+    $conditions: append($conditions, #{inspect(map-get($media_queries, $breakpoint))}, comma);
+  }
+
+  @media #{$conditions} {
+    @content;
+  }
+}

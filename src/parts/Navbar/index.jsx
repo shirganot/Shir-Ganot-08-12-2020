@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.scss';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import { fade, makeStyles } from '@material-ui/core/styles';
-
-// import CustomTabs from '../Tabs';
+import { EMAIL_VALIDATION } from '../../constants';
+import { getAllUserMessages } from '../../store/actions/messagesAction';
+import { setErrorTypeOfEmail } from '../../store/actions/navigationAction';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -50,6 +53,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { register, formState, watch } = useForm({
+    mode: 'onChange',
+  });
+
+  const { isValid, errors } = formState;
+
+  useEffect(() => {
+    const email = watch('searchedEmail');
+    if (isValid && email) {
+      dispatch(getAllUserMessages(email));
+    } else if (errors.searchedEmail) {
+      dispatch(setErrorTypeOfEmail(errors.searchedEmail.type));
+    }
+  }, [formState]);
 
   return (
     <AppBar position="static">
@@ -60,7 +78,9 @@ const Navbar = () => {
             <Search />
           </div>
           <InputBase
-            placeholder="Enter user id (email)"
+            placeholder="Enter email address"
+            name="searchedEmail"
+            inputRef={register({ required: true, pattern: EMAIL_VALIDATION })}
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,

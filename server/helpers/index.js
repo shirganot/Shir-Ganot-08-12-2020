@@ -1,26 +1,6 @@
 require('dotenv').config();
 const fs = require('fs').promises;
 
-// const createNewUser = (userId,email) => {
-//   fs.readFile(process.env.DATA_PATH, (err, data) => {
-//     if (err) return console.error(err);
-
-//     data = JSON.parse(data.toString());
-
-//     if (!data.usersEmails[email]) {
-//     data.usersEmails[userId] = email
-//       data.users[userId] = {
-//         messages: {
-//           sent: [],
-//           received: [],
-//         },
-//       };
-//     }
-
-//     writeFile(data);
-//   });
-// };
-
 const setJSONData = async (newData) => {
   try {
     await fs.writeFile(process.env.DATA_PATH, JSON.stringify(newData));
@@ -44,12 +24,13 @@ const newDate = () => new Date().toString();
 const getNewMsgId = async (senderId, receiverId) => {
   let db = await getJSONData();
   const { sent } = db.users[senderId].messages;
-  if (sent.length > 0) return `${senderId};${receiverId}-${sent[sent.length - 1].id + 1}`;
-  return `${senderId};${receiverId}-0`;
+  return `${senderId};${receiverId}-${sent.length}`;
 };
 
 const getEmailOrUserId = (db, identifier) => {
-  return db.usersEmails[identifier];
+  const desiredValue = db.usersEmails[identifier];
+  if (!desiredValue) throw new Error('User does not exist');
+  return desiredValue;
 };
 
 module.exports = {

@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Paper, Tabs as MuiTabs, Tab } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
+import { setCurrTab } from '../../store/actions/navigationAction';
 
 const Tabs = ({ tabs }) => {
-  const [value, setValue] = useState(0);
+  const dispatch = useDispatch();
+  const { currTab, errInManager } = useSelector(({ navigationInfo }) => navigationInfo);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    const newTab = tabs[newValue];
+    dispatch(setCurrTab(newTab));
   };
 
   return (
     <Paper square>
       <MuiTabs
-        value={value}
+        value={tabs.findIndex((tab) => tab.toLowerCase() === currTab)}
         indicatorColor="secondary"
         textColor="primary"
         onChange={handleChange}
         centered
       >
         {tabs.map((label) => (
-          <Tab label={label} key={uuid()} />
+          <Tab label={label} key={uuid()} disabled={Boolean(errInManager)} />
         ))}
       </MuiTabs>
     </Paper>

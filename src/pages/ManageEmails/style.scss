@@ -1,9 +1,15 @@
+@import '../../assets/scss/variables.scss';
+@import '../../assets/scss/breakpoints.scss';
+
 .manage-emails {
   display: flex;
   flex-direction: column;
 
-  p {
-    margin: 0 auto;
+  .err_description {
+    margin: 2rem auto 0 auto;
+    color: $secondary;
+    text-align: center;
+    font-size: 1.7rem;
   }
 
   .MuiFab-root {
@@ -12,5 +18,3 @@
     right: 2rem;
   }
 }
-
-//

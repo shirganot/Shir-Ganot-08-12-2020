@@ -1,33 +1,31 @@
 import React from 'react';
 import './style.scss';
-import { useForm } from 'react-hook-form';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Fab } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import ListOfMessages from './ListOfMessages';
 import Tabs from '../../parts/Tabs';
 import Navbar from '../../parts/Navbar';
+import { ERR_STR } from '../../constants';
 
 const ManageEmails = () => {
   const history = useHistory();
-  const { pathname } = useLocation();
+  const { errInManager } = useSelector(({ navigationInfo }) => navigationInfo);
 
-  const { register, errors, watch } = useForm();
+  const openComposeEmail = () => history.push(`/manage-emails/compose`);
 
   return (
     <div className="manage-emails page">
       <Navbar />
 
-      <Tabs tabs={[`Sent`, `Received`]} />
-      <p>please specify the desired user</p>
-
-      {/* <ListOfMessages /> */}
-      <Fab
-        size="large"
-        color="primary"
-        aria-label="add"
-        onClick={() => history.push(`${pathname}/compose`)}
-      >
+      <Tabs tabs={[`sent`, `received`]} />
+      {errInManager ? (
+        <h3 className="err_description">{ERR_STR[errInManager] || errInManager}</h3>
+      ) : (
+        <ListOfMessages />
+      )}
+      <Fab size="large" color="primary" aria-label="add" onClick={openComposeEmail}>
         <Add />
       </Fab>
     </div>

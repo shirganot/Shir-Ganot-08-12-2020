@@ -1,0 +1,33 @@
+@import './breakpoints.scss';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: open sans, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+
+  @include for_breakpoint(mobile) {
+    font-size: 8px;
+  }
+
+  @include for_breakpoint(tablet) {
+    font-size: 10px;
+  }
+
+  @include for_breakpoint(desktop) {
+    font-size: 12px;
+  }
+
+  @include for_breakpoint(desktopL) {
+    font-size: 14px;
+  }
+
+  @include for_breakpoint(larger) {
+    font-size: 16px;
+  }
+}
+
+.page {
+  width: 100vw;
+  height: 100vh;
+}

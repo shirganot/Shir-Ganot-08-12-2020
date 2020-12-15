@@ -1,14 +1,8 @@
 import { combineReducers } from 'redux';
-
-const initialState = {};
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import messagesReducer from './messagesReducer';
+import navigationReducer from './navigationReducer';
 
 export default combineReducers({
-  reducer,
+  messages: messagesReducer,
+  navigationInfo: navigationReducer,
 });
