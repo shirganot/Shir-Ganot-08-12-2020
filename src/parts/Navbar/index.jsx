@@ -7,7 +7,7 @@ import { Search } from '@material-ui/icons';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import { EMAIL_VALIDATION } from '../../constants';
 import { getAllUserMessages } from '../../store/actions/messagesAction';
-import { setErrorTypeOfEmail } from '../../store/actions/navigationAction';
+import { setError } from '../../store/actions/errorAction';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -65,7 +65,7 @@ const Navbar = () => {
     if (isValid && email) {
       dispatch(getAllUserMessages(email));
     } else if (errors.searchedEmail) {
-      dispatch(setErrorTypeOfEmail(errors.searchedEmail.type));
+      dispatch(setError(errors.searchedEmail.type));
     }
   }, [formState]);
 

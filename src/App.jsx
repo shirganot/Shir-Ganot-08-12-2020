@@ -9,8 +9,9 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/manage-emails" />} />
-        <Route path="/manage-emails/" component={ManageEmails} />
+        <Route path="/manage-emails" component={ManageEmails} />
       </Switch>
+      {/* //Another switch to display popup windows, with ManageEmails in the background */}
       <Switch>
         <Route path="/manage-emails/compose" component={ComposeEmail} />
         <Route path="/manage-emails/email-body" component={MessageBody} />

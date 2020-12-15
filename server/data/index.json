@@ -1,1 +1,20 @@
-{"usersEmails":{"1":"lala@gmail.com","2":"lili@gmail.com","lala@gmail.com":"1","lili@gmail.com":"2"},"users":{"1":{"messages":{"sent":[],"received":[]}},"2":{"messages":{"sent":[],"received":[]}}}}
+{
+  "usersEmails": {
+    "lala@gmail.com": "1",
+    "lili@gmail.com": "2"
+  },
+  "users": {
+    "1": {
+      "messages": {
+        "sent": [],
+        "received": []
+      }
+    },
+    "2": {
+      "messages": {
+        "sent": [],
+        "received": []
+      }
+    }
+  }
+}

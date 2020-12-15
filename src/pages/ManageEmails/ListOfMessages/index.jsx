@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.scss';
 import { List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import uuid from 'react-uuid';
@@ -20,6 +21,9 @@ const ListOfMessages = () => {
 
   const deleteMessageFromList = (msgId) => dispatch(deleteMessage(msgId));
 
+  if (!msgs[currTab].length) {
+    return <h3 className="err_description">There is no emails</h3>;
+  }
   return (
     <List component="nav" aria-label="main mailbox folders">
       {msgs[currTab].map(({ senderEmail, subject, id }) => (

@@ -1,8 +1,7 @@
-const filename = '../data/posts.json';
 const { SPLIT_MSG_ID } = require('../constants');
 const { getJSONData, setJSONData, getNewMsgId, newDate, getEmailOrUserId } = require('../helpers');
 
-//message={senderEmail, recevierEmail, body, subject,id,createdAt,updatedAt}
+//Message obj={senderEmail, recevierEmail, body, subject,id,createdAt,updatedAt}
 const createNewMessage = async (msgInfo) => {
   return new Promise(async (resolve, reject) => {
     try {
