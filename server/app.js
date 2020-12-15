@@ -9,6 +9,8 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const { errorHandler } = require('./middlewares');
+
 const app = express();
 
 const corsOptions = {
@@ -25,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/api', require('./controllers/index.controller'));
+app.use(errorHandler);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

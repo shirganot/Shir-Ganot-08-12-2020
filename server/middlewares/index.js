@@ -7,6 +7,12 @@ function mustBeInteger(req, res, next) {
   }
 }
 
+const errorHandler = (error, req, res, next) => {
+  console.log('inside ------------------------------------------------------');
+  const { message } = error;
+  return res.status(500).json({ message });
+};
+
 function checkFieldsPost(req, res, next) {
   const { title, content, tags } = req.body;
   if (title && content && tags) {
@@ -18,4 +24,5 @@ function checkFieldsPost(req, res, next) {
 module.exports = {
   mustBeInteger,
   checkFieldsPost,
+  errorHandler,
 };
