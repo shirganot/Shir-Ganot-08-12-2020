@@ -2,6 +2,7 @@ const { VALID_MSG_ID, EMAIL_VALIDATION } = require('../constants');
 
 const errorHandler = (error, req, res, next) => {
   const { message } = error;
+
   return res.status(500).json({ message });
 };
 
