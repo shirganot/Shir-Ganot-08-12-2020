@@ -6,7 +6,7 @@ import MessageBody from './pages/MessageBody';
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/manage-emails" />} />
         <Route path="/manage-emails" component={ManageEmails} />
