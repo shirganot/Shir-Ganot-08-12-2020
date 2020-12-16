@@ -8,7 +8,6 @@ const debug = require('debug')('server:server');
 const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const { errorHandler } = require('./middlewares');
 
 const app = express();

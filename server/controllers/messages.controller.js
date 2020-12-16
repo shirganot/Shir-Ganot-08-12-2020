@@ -5,9 +5,9 @@ const MW = require('../middlewares');
 
 router.get('/', async (req, res, next) => {
   const { email } = req.query;
-
   try {
     const items = await MODEL.getAllMessages(email);
+    console.log('🚀 ~ file: messages.controller.js ~ line 11 ~ router.get ~ items', items);
     res.json(items);
   } catch (err) {
     next(err);
