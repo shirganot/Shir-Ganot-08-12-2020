@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/Shir-Ganot-08-12-2020/static/css/main.f326da83.chunk.css",
-    "main.js": "/Shir-Ganot-08-12-2020/static/js/main.5cf6b298.chunk.js",
-    "main.js.map": "/Shir-Ganot-08-12-2020/static/js/main.5cf6b298.chunk.js.map",
+    "main.js": "/Shir-Ganot-08-12-2020/static/js/main.f811bd31.chunk.js",
+    "main.js.map": "/Shir-Ganot-08-12-2020/static/js/main.f811bd31.chunk.js.map",
     "runtime-main.js": "/Shir-Ganot-08-12-2020/static/js/runtime-main.2ebfee08.js",
     "runtime-main.js.map": "/Shir-Ganot-08-12-2020/static/js/runtime-main.2ebfee08.js.map",
-    "static/js/2.10a39c59.chunk.js": "/Shir-Ganot-08-12-2020/static/js/2.10a39c59.chunk.js",
-    "static/js/2.10a39c59.chunk.js.map": "/Shir-Ganot-08-12-2020/static/js/2.10a39c59.chunk.js.map",
+    "static/js/2.ac3e4456.chunk.js": "/Shir-Ganot-08-12-2020/static/js/2.ac3e4456.chunk.js",
+    "static/js/2.ac3e4456.chunk.js.map": "/Shir-Ganot-08-12-2020/static/js/2.ac3e4456.chunk.js.map",
     "static/js/3.f4702fe8.chunk.js": "/Shir-Ganot-08-12-2020/static/js/3.f4702fe8.chunk.js",
     "static/js/3.f4702fe8.chunk.js.map": "/Shir-Ganot-08-12-2020/static/js/3.f4702fe8.chunk.js.map",
     "index.html": "/Shir-Ganot-08-12-2020/index.html",
     "static/css/main.f326da83.chunk.css.map": "/Shir-Ganot-08-12-2020/static/css/main.f326da83.chunk.css.map",
-    "static/js/2.10a39c59.chunk.js.LICENSE.txt": "/Shir-Ganot-08-12-2020/static/js/2.10a39c59.chunk.js.LICENSE.txt"
+    "static/js/2.ac3e4456.chunk.js.LICENSE.txt": "/Shir-Ganot-08-12-2020/static/js/2.ac3e4456.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2ebfee08.js",
-    "static/js/2.10a39c59.chunk.js",
+    "static/js/2.ac3e4456.chunk.js",
     "static/css/main.f326da83.chunk.css",
-    "static/js/main.5cf6b298.chunk.js"
+    "static/js/main.f811bd31.chunk.js"
   ]
 }
